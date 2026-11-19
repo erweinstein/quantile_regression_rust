@@ -1,0 +1,14 @@
+task,n,rust_threads,python_seconds,rust_seconds,ratio
+rq (QR / lstsq),1000,1,0.0025,0.0006,4.3
+rq_fast (Cholesky),1000,1,0.0021,0.0005,3.8
+rq (QR / lstsq),10000,1,0.0215,0.0121,1.8
+rq_fast (Cholesky),10000,1,0.0158,0.0070,2.3
+rq (QR / lstsq),100000,1,0.2874,0.1125,2.6
+rq_fast (Cholesky),100000,1,0.1949,0.1055,1.8
+selection_qr (Code_QRS.m),2000,1,1.9980,0.3702,5.4
+selection_qr (Code_QRS.m),2000,2,1.9980,0.1986,10.1
+"selection_qr_fast, preprocessing",2000,1,1.1213,0.1204,9.3
+selection_qr (Code_QRS.m),8000,1,7.0941,1.7862,4.0
+selection_qr (Code_QRS.m),8000,2,7.0941,0.9562,7.4
+"selection_qr_fast, preprocessing",8000,1,1.9949,0.4241,4.7
+"ipqr, exponential model",5000,1,0.0093,0.0072,1.3

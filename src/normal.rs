@@ -106,18 +106,21 @@ fn rules() -> &'static [(Vec<f64>, Vec<f64>); 3] {
     R.get_or_init(|| [gauss_legendre_half(6), gauss_legendre_half(12), gauss_legendre_half(20)])
 }
 
-/// P(X > h, Y > k) for a standard bivariate normal pair with correlation r (Genz's BVNU).
-pub fn bvn_upper(h: f64, k: f64, r: f64) -> f64 {
-    if h == f64::INFINITY || k == f64::INFINITY {
-        return 0.0;
-    }
-    if h == f64::NEG_INFINITY {
-        return if k == f64::NEG_INFINITY { 1.0 } else { cdf(-k) };
-    }
-    if k == f64::NEG_INFINITY {
-        return cdf(-h);
-    }
-    let (x, w) = {
+/// Genz's BVNU for one correlation r, with everything that depends only on r computed once (the sines of the
+/// quadrature nodes for |r| < 0.925, and the nodes' xs and sqrt(1 - xs) otherwise). `upper` then gives the same
+/// numbers as evaluating the whole algorithm for each (h, k), with far fewer sin and sqrt calls; the rotated
+/// quantile regressions evaluate it once per observation at each of hundreds of (tau, rho) pairs.
+pub struct Bvn {
+    r: f64,
+    /// |r| < 0.925: (weight, sin at node 1 - x, sin at node 1 + x), and asin(r)
+    small: Vec<(f64, f64, f64)>,
+    asr: f64,
+    /// |r| >= 0.925: (weight, xs, rs) for each node and sign, and a = sqrt(1 - r^2) / 2
+    large: Vec<(f64, f64, f64)>,
+}
+
+impl Bvn {
+    pub fn new(r: f64) -> Bvn {
         let rr = rules();
         let i = if r.abs() < 0.3 {
             0
@@ -126,46 +129,69 @@ pub fn bvn_upper(h: f64, k: f64, r: f64) -> f64 {
         } else {
             2
         };
-        (&rr[i].0, &rr[i].1)
-    };
-    let mut k = k;
-    let mut hk = h * k;
-    let mut bvn = 0.0;
-    if r.abs() < 0.925 {
-        let hs = (h * h + k * k) / 2.0;
-        let asr = r.asin();
-        for (xi, wi) in x.iter().zip(w) {
-            let sn = (asr * (1.0 - xi) / 2.0).sin();
-            bvn += wi * ((sn * hk - hs) / (1.0 - sn * sn)).exp();
-            let sn = (asr * (1.0 + xi) / 2.0).sin();
-            bvn += wi * ((sn * hk - hs) / (1.0 - sn * sn)).exp();
-        }
-        bvn = bvn * asr / (4.0 * PI) + cdf(-h) * cdf(-k);
-    } else {
-        if r < 0.0 {
-            k = -k;
-            hk = -hk;
-        }
-        if r.abs() < 1.0 {
-            let as_ = (1.0 - r) * (1.0 + r);
-            let mut a = as_.sqrt();
-            let bs = (h - k) * (h - k);
-            let c = (4.0 - hk) / 8.0;
-            let d = (12.0 - hk) / 16.0;
-            let asr = -(bs / as_ + hk) / 2.0;
-            if asr > -100.0 {
-                bvn = a * asr.exp() * (1.0 - c * (bs - as_) * (1.0 - d * bs / 5.0) / 3.0 + c * d * as_ * as_ / 5.0);
+        let (x, w) = (&rr[i].0, &rr[i].1);
+        let mut b = Bvn { r, small: vec![], asr: 0.0, large: vec![] };
+        if r.abs() < 0.925 {
+            b.asr = r.asin();
+            for (xi, wi) in x.iter().zip(w) {
+                b.small.push((*wi, (b.asr * (1.0 - xi) / 2.0).sin(), (b.asr * (1.0 + xi) / 2.0).sin()));
             }
-            if hk > -100.0 {
-                let b = bs.sqrt();
-                let sp = (2.0 * PI).sqrt() * cdf(-b / a);
-                bvn -= (-hk / 2.0).exp() * sp * b * (1.0 - c * bs * (1.0 - d * bs / 5.0) / 3.0);
-            }
-            a /= 2.0;
+        } else if r.abs() < 1.0 {
+            let a = ((1.0 - r) * (1.0 + r)).sqrt() / 2.0;
             for (xi, wi) in x.iter().zip(w) {
                 for sgn in [-1.0, 1.0] {
                     let xs = (a + a * sgn * xi).powi(2);
-                    let rs = (1.0 - xs).sqrt();
+                    b.large.push((*wi, xs, (1.0 - xs).sqrt()));
+                }
+            }
+        }
+        b
+    }
+
+    /// P(X > h, Y > k).
+    pub fn upper(&self, h: f64, k: f64) -> f64 {
+        let r = self.r;
+        if h == f64::INFINITY || k == f64::INFINITY {
+            return 0.0;
+        }
+        if h == f64::NEG_INFINITY {
+            return if k == f64::NEG_INFINITY { 1.0 } else { cdf(-k) };
+        }
+        if k == f64::NEG_INFINITY {
+            return cdf(-h);
+        }
+        let mut k = k;
+        let mut hk = h * k;
+        let mut bvn = 0.0;
+        if r.abs() < 0.925 {
+            let hs = (h * h + k * k) / 2.0;
+            for &(wi, sn1, sn2) in &self.small {
+                bvn += wi * ((sn1 * hk - hs) / (1.0 - sn1 * sn1)).exp();
+                bvn += wi * ((sn2 * hk - hs) / (1.0 - sn2 * sn2)).exp();
+            }
+            bvn = bvn * self.asr / (4.0 * PI) + cdf(-h) * cdf(-k);
+        } else {
+            if r < 0.0 {
+                k = -k;
+                hk = -hk;
+            }
+            if r.abs() < 1.0 {
+                let as_ = (1.0 - r) * (1.0 + r);
+                let mut a = as_.sqrt();
+                let bs = (h - k) * (h - k);
+                let c = (4.0 - hk) / 8.0;
+                let d = (12.0 - hk) / 16.0;
+                let asr = -(bs / as_ + hk) / 2.0;
+                if asr > -100.0 {
+                    bvn = a * asr.exp() * (1.0 - c * (bs - as_) * (1.0 - d * bs / 5.0) / 3.0 + c * d * as_ * as_ / 5.0);
+                }
+                if hk > -100.0 {
+                    let b = bs.sqrt();
+                    let sp = (2.0 * PI).sqrt() * cdf(-b / a);
+                    bvn -= (-hk / 2.0).exp() * sp * b * (1.0 - c * bs * (1.0 - d * bs / 5.0) / 3.0);
+                }
+                a /= 2.0;
+                for &(wi, xs, rs) in &self.large {
                     let asr = -(bs / xs + hk) / 2.0;
                     if asr > -100.0 {
                         let sp = 1.0 + c * xs * (1.0 + d * xs);
@@ -173,19 +199,30 @@ pub fn bvn_upper(h: f64, k: f64, r: f64) -> f64 {
                         bvn += a * wi * asr.exp() * (ep - sp);
                     }
                 }
+                bvn = -bvn / (2.0 * PI);
             }
-            bvn = -bvn / (2.0 * PI);
+            if r > 0.0 {
+                bvn += cdf(-h.max(k));
+            } else if h >= k {
+                bvn = -bvn;
+            } else {
+                let l = if h < 0.0 { cdf(k) - cdf(h) } else { cdf(-h) - cdf(-k) };
+                bvn = l - bvn;
+            }
         }
-        if r > 0.0 {
-            bvn += cdf(-h.max(k));
-        } else if h >= k {
-            bvn = -bvn;
-        } else {
-            let l = if h < 0.0 { cdf(k) - cdf(h) } else { cdf(-h) - cdf(-k) };
-            bvn = l - bvn;
-        }
+        bvn.clamp(0.0, 1.0)
     }
-    bvn.clamp(0.0, 1.0)
+
+    /// Phi_2(h, k; r) = P(X <= h, Y <= k).
+    #[inline]
+    pub fn cdf(&self, h: f64, k: f64) -> f64 {
+        self.upper(-h, -k)
+    }
+}
+
+/// P(X > h, Y > k) for a standard bivariate normal pair with correlation r (Genz's BVNU).
+pub fn bvn_upper(h: f64, k: f64, r: f64) -> f64 {
+    Bvn::new(r).upper(h, k)
 }
 
 /// The standard bivariate normal cdf Phi_2(h, k; rho) = P(X <= h, Y <= k).

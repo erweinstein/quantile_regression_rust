@@ -130,8 +130,16 @@ pub fn gaussian_copula_cdf(u: f64, v: f64, rho: f64) -> f64 {
 /// (MATLAB: G = copulacdf('Gaussian', [tau*ones(N1,1) pZ1], rho) ./ pZ1; the solver needs 0 < G < 1, and
 /// the MATLAB code passes values of 0 or 1 on silently).
 pub fn rotated_tau(tau: f64, p: &[f64], rho: f64) -> Vec<f64> {
+    let q: Vec<f64> = p.iter().map(|&pi| normal::ppf(pi)).collect();
+    rotated_tau_q(tau, p, &q, rho)
+}
+
+/// rotated_tau with the quantiles q_i = Phi^{-1}(p_i) already computed (they do not change with tau or rho).
+pub fn rotated_tau_q(tau: f64, p: &[f64], q: &[f64], rho: f64) -> Vec<f64> {
     let eps = 1e-6;
-    p.iter().map(|&pi| (gaussian_copula_cdf(tau, pi, rho) / pi).clamp(eps, 1.0 - eps)).collect()
+    let h = normal::ppf(tau);
+    let bvn = normal::Bvn::new(rho);
+    p.iter().zip(q).map(|(&pi, &qi)| (bvn.cdf(h, qi) / pi).clamp(eps, 1.0 - eps)).collect()
 }
 
 /// Weighted regression quantile argmin_b sum_i w_i rho_tau(y_i - x_i'b), w_i >= 0, by rescaling the rows of X
@@ -164,6 +172,7 @@ struct Participants {
     x1c: Matrix,
     y1: Vec<f64>,
     pz1: Vec<f64>,
+    q1: Vec<f64>,
     w1: Option<Vec<f64>>,
 }
 
@@ -185,6 +194,7 @@ fn setup(d: &[f64], y: &[f64], x: &Matrix, b: &Matrix, w: Option<&[f64]>) -> Res
     let part = Participants {
         y1: sel.iter().map(|&i| y[i]).collect(),
         pz1: sel.iter().map(|&i| pz[i]).collect(),
+        q1: sel.iter().map(|&i| normal::ppf(pz[i])).collect(),
         w1: w.map(|w| sel.iter().map(|&i| w[i]).collect()),
         x1c,
     };
@@ -194,7 +204,7 @@ fn setup(d: &[f64], y: &[f64], x: &Matrix, b: &Matrix, w: Option<&[f64]>) -> Res
 impl Participants {
     /// One rotated quantile regression at level tau and copula parameter rho.
     fn fit(&self, tau: f64, rho: f64, method: Method) -> Vec<f64> {
-        let g = rotated_tau(tau, &self.pz1, rho);
+        let g = rotated_tau_q(tau, &self.pz1, &self.q1, rho);
         match &self.w1 {
             None => rq_unchecked(&self.x1c, &self.y1, Tau::PerObs(&g), LpOptions::default(), method).coef,
             Some(w1) => weighted_rq_impl(&self.x1c, &self.y1, Tau::PerObs(&g), w1, false).expect("weighted rotated regression"),
@@ -205,7 +215,7 @@ impl Participants {
         let n1 = self.y1.len();
         let mut obj = 0.0;
         for &tau in vectau {
-            let g = rotated_tau(tau, &self.pz1, rho);
+            let g = rotated_tau_q(tau, &self.pz1, &self.q1, rho);
             let beta = match &self.w1 {
                 None => rq_unchecked(&self.x1c, &self.y1, Tau::PerObs(&g), LpOptions::default(), method).coef,
                 Some(w1) => weighted_rq_impl(&self.x1c, &self.y1, Tau::PerObs(&g), w1, false).expect("weighted rotated regression"),

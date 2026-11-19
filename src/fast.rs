@@ -42,7 +42,7 @@ use crate::extensions::std;
 use crate::linalg::{dot, Matrix, Qr};
 use crate::normal;
 use crate::rq::{rq_unchecked, LpOptions, Method, QrError, Tau};
-use crate::selection::{default_taus, default_vecrho, probit, rotated_tau};
+use crate::selection::{default_taus, default_vecrho, probit, rotated_tau_q};
 use rayon::prelude::*;
 
 fn rq_fast_unchecked(x: &Matrix, y: &[f64], tau: Tau) -> Vec<f64> {
@@ -234,6 +234,7 @@ pub fn selection_qr_fast(d: &[f64], y: &[f64], x: &Matrix, b: &Matrix, opt: &Fas
     let sel: Vec<usize> = (0..n).filter(|&i| d[i].trunc() == 1.0).collect();
     let y1: Vec<f64> = sel.iter().map(|&i| y[i]).collect();
     let pz1: Vec<f64> = sel.iter().map(|&i| pz[i]).collect();
+    let q1: Vec<f64> = pz1.iter().map(|&p| normal::ppf(p)).collect();
     let x1c = x.select_rows(&sel).with_intercept();
     if sel.len() < x1c.ncol || Qr::new(&x1c, None).rank() < x1c.ncol {
         return Err(QrError::RankDeficient);
@@ -246,7 +247,7 @@ pub fn selection_qr_fast(d: &[f64], y: &[f64], x: &Matrix, b: &Matrix, opt: &Fas
         let mut obj = 0.0;
         let mut sols = Vec::with_capacity(vectau.len());
         for (k, &tau) in vectau.iter().enumerate() {
-            let g = rotated_tau(tau, &pz1, rhoa);
+            let g = rotated_tau_q(tau, &pz1, &q1, rhoa);
             let beta = match (&starts[k], opt.preprocess) {
                 (Some(s), true) => rq_preprocessed_default(&x1c, &y1, Tau::PerObs(&g), s).0,
                 _ => rq_fast_unchecked(&x1c, &y1, Tau::PerObs(&g)),
@@ -328,7 +329,7 @@ pub fn selection_qr_fast(d: &[f64], y: &[f64], x: &Matrix, b: &Matrix, opt: &Fas
         let mut prev: Option<Vec<f64>> = None;
         let mut cols = Vec::with_capacity(jt);
         for &tau in &opt.taus {
-            let g = rotated_tau(tau, &pz1, rho);
+            let g = rotated_tau_q(tau, &pz1, &q1, rho);
             let bcol = match &prev {
                 Some(s) => rq_preprocessed_default(&x1c, &y1, Tau::PerObs(&g), s).0,
                 None => rq_fast_unchecked(&x1c, &y1, Tau::PerObs(&g)),
@@ -338,7 +339,7 @@ pub fn selection_qr_fast(d: &[f64], y: &[f64], x: &Matrix, b: &Matrix, opt: &Fas
         }
         cols
     } else {
-        opt.taus.par_iter().map(|&tau| rq_fast_unchecked(&x1c, &y1, Tau::PerObs(&rotated_tau(tau, &pz1, rho)))).collect()
+        opt.taus.par_iter().map(|&tau| rq_fast_unchecked(&x1c, &y1, Tau::PerObs(&rotated_tau_q(tau, &pz1, &q1, rho)))).collect()
     };
     let mut beta = Matrix::zeros(p, jt);
     for (j, c) in cols.iter().enumerate() {
