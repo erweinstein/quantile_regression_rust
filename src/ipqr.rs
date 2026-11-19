@@ -1,9 +1,7 @@
 //! ipqr.rs -- nonlinear quantile regression by Koenker and Park's (1996) interior point algorithm: a Rust
 //! translation of ipqr.m and ipqr_objfunc.m, by way of the Python port in erweinstein/quantile_regression
-//! (ipqr.py).
-//!
-//!     Koenker, R. and B. J. Park (1996), "An Interior Point Algorithm for Nonlinear Quantile Regression,"
-//!     Journal of Econometrics 71, 265-283.
+//! (ipqr.py), which implement Koenker, R. and B. J. Park (1996), "An Interior Point Algorithm for Nonlinear
+//! Quantile Regression," Journal of Econometrics 71, 265-283.
 //!
 //! The MATLAB version passes the model as the name of a function and finds its Jacobian by prepending 'd' to
 //! that name; the Python port passes two functions. Here the model is any type implementing [`Model`]: its

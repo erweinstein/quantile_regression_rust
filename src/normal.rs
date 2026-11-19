@@ -19,7 +19,7 @@
 //! erweinstein.com
 
 use libm::erfc;
-use std::f64::consts::{FRAC_1_SQRT_2, PI, SQRT_2};
+use std::f64::consts::{FRAC_1_SQRT_2, PI};
 use std::sync::OnceLock;
 
 /// Standard normal cdf Phi(x).
