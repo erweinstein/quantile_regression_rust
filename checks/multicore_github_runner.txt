@@ -1,264 +1,270 @@
-# machine: 4 cores; AMD EPYC 7763 64-Core Processor; 15 GB
+# machine: 4 cores; AMD EPYC 9V74 80-Core Processor; 15 GB
 # rustc: rustc 1.100.0 (0ef1bc386 2026-11-09)
-threads=1 task=selection_qr_n8000 secs=2.367 rho=-0.44 digest=ab9c6139ac246f7b
-threads=1 task=selection_qr_fast_n8000 secs=0.539 rho=-0.44 digest=c2223334c00c729a
-threads=1 task=bootstrap_16_n2000 secs=7.901 rho_se=0.07827 digest=85b8cb80346b0fab
-threads=1 task=conquer_bootstrap_400_n5000 secs=0.908 se=0.03064 digest=0c5f4b8d95308c1b
-threads=2 task=selection_qr_n8000 secs=1.216 rho=-0.44 digest=ab9c6139ac246f7b
-threads=2 task=selection_qr_fast_n8000 secs=0.538 rho=-0.44 digest=c2223334c00c729a
-threads=2 task=bootstrap_16_n2000 secs=4.004 rho_se=0.07827 digest=85b8cb80346b0fab
-threads=2 task=conquer_bootstrap_400_n5000 secs=0.472 se=0.03064 digest=0c5f4b8d95308c1b
-threads=3 task=selection_qr_n8000 secs=0.983 rho=-0.44 digest=ab9c6139ac246f7b
-threads=3 task=selection_qr_fast_n8000 secs=0.539 rho=-0.44 digest=c2223334c00c729a
-threads=3 task=bootstrap_16_n2000 secs=3.311 rho_se=0.07827 digest=85b8cb80346b0fab
-threads=3 task=conquer_bootstrap_400_n5000 secs=0.388 se=0.03064 digest=0c5f4b8d95308c1b
-threads=4 task=selection_qr_n8000 secs=0.843 rho=-0.44 digest=ab9c6139ac246f7b
-threads=4 task=selection_qr_fast_n8000 secs=0.536 rho=-0.44 digest=c2223334c00c729a
-threads=4 task=bootstrap_16_n2000 secs=2.835 rho_se=0.07827 digest=85b8cb80346b0fab
-threads=4 task=conquer_bootstrap_400_n5000 secs=0.339 se=0.03064 digest=0c5f4b8d95308c1b
-threads=6 task=selection_qr_n8000 secs=0.853 rho=-0.44 digest=ab9c6139ac246f7b
-threads=6 task=selection_qr_fast_n8000 secs=0.535 rho=-0.44 digest=c2223334c00c729a
-threads=6 task=bootstrap_16_n2000 secs=2.840 rho_se=0.07827 digest=85b8cb80346b0fab
-threads=6 task=conquer_bootstrap_400_n5000 secs=0.346 se=0.03064 digest=0c5f4b8d95308c1b
-threads=8 task=selection_qr_n8000 secs=0.841 rho=-0.44 digest=ab9c6139ac246f7b
-threads=8 task=selection_qr_fast_n8000 secs=0.538 rho=-0.44 digest=c2223334c00c729a
-threads=8 task=bootstrap_16_n2000 secs=2.869 rho_se=0.07827 digest=85b8cb80346b0fab
-threads=8 task=conquer_bootstrap_400_n5000 secs=0.339 se=0.03064 digest=0c5f4b8d95308c1b
-n=2000 kind=serial secs=0.001170
-n=2000 kind=grid rho=-0.98 secs=0.006612
-n=2000 kind=grid rho=-0.96 secs=0.006192
-n=2000 kind=grid rho=-0.94 secs=0.006342
-n=2000 kind=grid rho=-0.92 secs=0.005343
-n=2000 kind=grid rho=-0.9 secs=0.005045
-n=2000 kind=grid rho=-0.88 secs=0.005243
-n=2000 kind=grid rho=-0.86 secs=0.005423
-n=2000 kind=grid rho=-0.84 secs=0.005113
-n=2000 kind=grid rho=-0.82 secs=0.005135
-n=2000 kind=grid rho=-0.8 secs=0.005301
-n=2000 kind=grid rho=-0.78 secs=0.004808
-n=2000 kind=grid rho=-0.76 secs=0.004755
-n=2000 kind=grid rho=-0.74 secs=0.004785
-n=2000 kind=grid rho=-0.72 secs=0.004651
-n=2000 kind=grid rho=-0.7 secs=0.004487
-n=2000 kind=grid rho=-0.68 secs=0.004430
-n=2000 kind=grid rho=-0.66 secs=0.004426
-n=2000 kind=grid rho=-0.64 secs=0.004477
-n=2000 kind=grid rho=-0.62 secs=0.004547
-n=2000 kind=grid rho=-0.6 secs=0.004689
-n=2000 kind=grid rho=-0.58 secs=0.004704
-n=2000 kind=grid rho=-0.56 secs=0.004636
-n=2000 kind=grid rho=-0.54 secs=0.004562
-n=2000 kind=grid rho=-0.52 secs=0.004548
-n=2000 kind=grid rho=-0.5 secs=0.004567
-n=2000 kind=grid rho=-0.48 secs=0.004519
-n=2000 kind=grid rho=-0.46 secs=0.004454
-n=2000 kind=grid rho=-0.44 secs=0.004524
-n=2000 kind=grid rho=-0.42 secs=0.004475
-n=2000 kind=grid rho=-0.4 secs=0.004545
-n=2000 kind=grid rho=-0.38 secs=0.004369
-n=2000 kind=grid rho=-0.36 secs=0.004503
-n=2000 kind=grid rho=-0.34 secs=0.004460
-n=2000 kind=grid rho=-0.32 secs=0.004463
-n=2000 kind=grid rho=-0.3 secs=0.004577
-n=2000 kind=grid rho=-0.28 secs=0.004301
-n=2000 kind=grid rho=-0.26 secs=0.004141
-n=2000 kind=grid rho=-0.24 secs=0.004365
-n=2000 kind=grid rho=-0.22 secs=0.004181
-n=2000 kind=grid rho=-0.2 secs=0.004325
-n=2000 kind=grid rho=-0.18 secs=0.004264
-n=2000 kind=grid rho=-0.16 secs=0.004139
-n=2000 kind=grid rho=-0.14 secs=0.004134
-n=2000 kind=grid rho=-0.12 secs=0.004092
-n=2000 kind=grid rho=-0.1 secs=0.003933
-n=2000 kind=grid rho=-0.08 secs=0.003952
-n=2000 kind=grid rho=-0.06 secs=0.003753
-n=2000 kind=grid rho=-0.04 secs=0.003906
-n=2000 kind=grid rho=-0.02 secs=0.003972
-n=2000 kind=grid rho=0 secs=0.003980
-n=2000 kind=grid rho=0.02 secs=0.003953
-n=2000 kind=grid rho=0.04 secs=0.003900
-n=2000 kind=grid rho=0.06 secs=0.003843
-n=2000 kind=grid rho=0.08 secs=0.003825
-n=2000 kind=grid rho=0.1 secs=0.003919
-n=2000 kind=grid rho=0.12 secs=0.003709
-n=2000 kind=grid rho=0.14 secs=0.004032
-n=2000 kind=grid rho=0.16 secs=0.003833
-n=2000 kind=grid rho=0.18 secs=0.003918
-n=2000 kind=grid rho=0.2 secs=0.003849
-n=2000 kind=grid rho=0.22 secs=0.003824
-n=2000 kind=grid rho=0.24 secs=0.003880
-n=2000 kind=grid rho=0.26 secs=0.003909
-n=2000 kind=grid rho=0.28 secs=0.004045
-n=2000 kind=grid rho=0.3 secs=0.003921
-n=2000 kind=grid rho=0.32 secs=0.003902
-n=2000 kind=grid rho=0.34 secs=0.004010
-n=2000 kind=grid rho=0.36 secs=0.003801
-n=2000 kind=grid rho=0.38 secs=0.003876
-n=2000 kind=grid rho=0.4 secs=0.003862
-n=2000 kind=grid rho=0.42 secs=0.003867
-n=2000 kind=grid rho=0.44 secs=0.003952
-n=2000 kind=grid rho=0.46 secs=0.004127
-n=2000 kind=grid rho=0.48 secs=0.003992
-n=2000 kind=grid rho=0.5 secs=0.004079
-n=2000 kind=grid rho=0.52 secs=0.004100
-n=2000 kind=grid rho=0.54 secs=0.004527
-n=2000 kind=grid rho=0.56 secs=0.004314
-n=2000 kind=grid rho=0.58 secs=0.004302
-n=2000 kind=grid rho=0.6 secs=0.004266
-n=2000 kind=grid rho=0.62 secs=0.004289
-n=2000 kind=grid rho=0.64 secs=0.004483
-n=2000 kind=grid rho=0.66 secs=0.004192
-n=2000 kind=grid rho=0.68 secs=0.004332
-n=2000 kind=grid rho=0.7 secs=0.004236
-n=2000 kind=grid rho=0.72 secs=0.004487
-n=2000 kind=grid rho=0.74 secs=0.004718
-n=2000 kind=grid rho=0.76 secs=0.004899
-n=2000 kind=grid rho=0.78 secs=0.004884
-n=2000 kind=grid rho=0.8 secs=0.005200
-n=2000 kind=grid rho=0.82 secs=0.005259
-n=2000 kind=grid rho=0.84 secs=0.004921
-n=2000 kind=grid rho=0.86 secs=0.005184
-n=2000 kind=grid rho=0.88 secs=0.005121
-n=2000 kind=grid rho=0.9 secs=0.005698
-n=2000 kind=grid rho=0.92 secs=0.005440
-n=2000 kind=grid rho=0.94 secs=0.006220
-n=2000 kind=grid rho=0.96 secs=0.006395
-n=2000 kind=grid rho=0.98 secs=0.006118
-n=2000 kind=final tau=0.05 secs=0.001554
-n=2000 kind=final tau=0.1 secs=0.001245
-n=2000 kind=final tau=0.15 secs=0.001350
-n=2000 kind=final tau=0.2 secs=0.001042
-n=2000 kind=final tau=0.25 secs=0.000939
-n=2000 kind=final tau=0.3 secs=0.000955
-n=2000 kind=final tau=0.35 secs=0.000954
-n=2000 kind=final tau=0.4 secs=0.000986
-n=2000 kind=final tau=0.45 secs=0.000963
-n=2000 kind=final tau=0.5 secs=0.000870
-n=2000 kind=final tau=0.55 secs=0.000971
-n=2000 kind=final tau=0.6 secs=0.000908
-n=2000 kind=final tau=0.65 secs=0.000922
-n=2000 kind=final tau=0.7 secs=0.001080
-n=2000 kind=final tau=0.75 secs=0.001170
-n=2000 kind=final tau=0.8 secs=0.000969
-n=2000 kind=final tau=0.85 secs=0.001020
-n=2000 kind=final tau=0.9 secs=0.001327
-n=2000 kind=final tau=0.95 secs=0.001479
-n=8000 kind=serial secs=0.004334
-n=8000 kind=grid rho=-0.98 secs=0.033982
-n=8000 kind=grid rho=-0.96 secs=0.032807
-n=8000 kind=grid rho=-0.94 secs=0.033149
-n=8000 kind=grid rho=-0.92 secs=0.028279
-n=8000 kind=grid rho=-0.9 secs=0.029654
-n=8000 kind=grid rho=-0.88 secs=0.027509
-n=8000 kind=grid rho=-0.86 secs=0.026740
-n=8000 kind=grid rho=-0.84 secs=0.028013
-n=8000 kind=grid rho=-0.82 secs=0.028503
-n=8000 kind=grid rho=-0.8 secs=0.026186
-n=8000 kind=grid rho=-0.78 secs=0.025992
-n=8000 kind=grid rho=-0.76 secs=0.023300
-n=8000 kind=grid rho=-0.74 secs=0.023255
-n=8000 kind=grid rho=-0.72 secs=0.022970
-n=8000 kind=grid rho=-0.7 secs=0.022772
-n=8000 kind=grid rho=-0.68 secs=0.022877
-n=8000 kind=grid rho=-0.66 secs=0.022725
-n=8000 kind=grid rho=-0.64 secs=0.023175
-n=8000 kind=grid rho=-0.62 secs=0.021799
-n=8000 kind=grid rho=-0.6 secs=0.022033
-n=8000 kind=grid rho=-0.58 secs=0.021836
-n=8000 kind=grid rho=-0.56 secs=0.022457
-n=8000 kind=grid rho=-0.54 secs=0.021571
-n=8000 kind=grid rho=-0.52 secs=0.021131
-n=8000 kind=grid rho=-0.5 secs=0.022470
-n=8000 kind=grid rho=-0.48 secs=0.021816
-n=8000 kind=grid rho=-0.46 secs=0.022023
-n=8000 kind=grid rho=-0.44 secs=0.021742
-n=8000 kind=grid rho=-0.42 secs=0.020894
-n=8000 kind=grid rho=-0.4 secs=0.020511
-n=8000 kind=grid rho=-0.38 secs=0.021174
-n=8000 kind=grid rho=-0.36 secs=0.021894
-n=8000 kind=grid rho=-0.34 secs=0.021110
-n=8000 kind=grid rho=-0.32 secs=0.020441
-n=8000 kind=grid rho=-0.3 secs=0.020387
-n=8000 kind=grid rho=-0.28 secs=0.019957
-n=8000 kind=grid rho=-0.26 secs=0.019911
-n=8000 kind=grid rho=-0.24 secs=0.020389
-n=8000 kind=grid rho=-0.22 secs=0.020299
-n=8000 kind=grid rho=-0.2 secs=0.021166
-n=8000 kind=grid rho=-0.18 secs=0.022179
-n=8000 kind=grid rho=-0.16 secs=0.022330
-n=8000 kind=grid rho=-0.14 secs=0.020519
-n=8000 kind=grid rho=-0.12 secs=0.021224
-n=8000 kind=grid rho=-0.1 secs=0.020103
-n=8000 kind=grid rho=-0.08 secs=0.019890
-n=8000 kind=grid rho=-0.06 secs=0.021324
-n=8000 kind=grid rho=-0.04 secs=0.020894
-n=8000 kind=grid rho=-0.02 secs=0.020707
-n=8000 kind=grid rho=0 secs=0.020639
-n=8000 kind=grid rho=0.02 secs=0.020697
-n=8000 kind=grid rho=0.04 secs=0.019890
-n=8000 kind=grid rho=0.06 secs=0.020896
-n=8000 kind=grid rho=0.08 secs=0.022395
-n=8000 kind=grid rho=0.1 secs=0.020918
-n=8000 kind=grid rho=0.12 secs=0.020988
-n=8000 kind=grid rho=0.14 secs=0.021465
-n=8000 kind=grid rho=0.16 secs=0.020568
-n=8000 kind=grid rho=0.18 secs=0.020842
-n=8000 kind=grid rho=0.2 secs=0.022128
-n=8000 kind=grid rho=0.22 secs=0.020091
-n=8000 kind=grid rho=0.24 secs=0.020572
-n=8000 kind=grid rho=0.26 secs=0.020510
-n=8000 kind=grid rho=0.28 secs=0.020964
-n=8000 kind=grid rho=0.3 secs=0.021111
-n=8000 kind=grid rho=0.32 secs=0.020403
-n=8000 kind=grid rho=0.34 secs=0.020727
-n=8000 kind=grid rho=0.36 secs=0.020778
-n=8000 kind=grid rho=0.38 secs=0.021988
-n=8000 kind=grid rho=0.4 secs=0.022147
-n=8000 kind=grid rho=0.42 secs=0.021124
-n=8000 kind=grid rho=0.44 secs=0.020859
-n=8000 kind=grid rho=0.46 secs=0.021852
-n=8000 kind=grid rho=0.48 secs=0.021342
-n=8000 kind=grid rho=0.5 secs=0.021727
-n=8000 kind=grid rho=0.52 secs=0.022103
-n=8000 kind=grid rho=0.54 secs=0.022654
-n=8000 kind=grid rho=0.56 secs=0.021702
-n=8000 kind=grid rho=0.58 secs=0.022455
-n=8000 kind=grid rho=0.6 secs=0.023503
-n=8000 kind=grid rho=0.62 secs=0.022631
-n=8000 kind=grid rho=0.64 secs=0.023173
-n=8000 kind=grid rho=0.66 secs=0.022557
-n=8000 kind=grid rho=0.68 secs=0.023612
-n=8000 kind=grid rho=0.7 secs=0.023893
-n=8000 kind=grid rho=0.72 secs=0.023704
-n=8000 kind=grid rho=0.74 secs=0.024853
-n=8000 kind=grid rho=0.76 secs=0.025956
-n=8000 kind=grid rho=0.78 secs=0.025769
-n=8000 kind=grid rho=0.8 secs=0.024679
-n=8000 kind=grid rho=0.82 secs=0.027235
-n=8000 kind=grid rho=0.84 secs=0.027559
-n=8000 kind=grid rho=0.86 secs=0.026930
-n=8000 kind=grid rho=0.88 secs=0.027967
-n=8000 kind=grid rho=0.9 secs=0.027668
-n=8000 kind=grid rho=0.92 secs=0.029107
-n=8000 kind=grid rho=0.94 secs=0.032944
-n=8000 kind=grid rho=0.96 secs=0.033135
-n=8000 kind=grid rho=0.98 secs=0.033071
-n=8000 kind=final tau=0.05 secs=0.010399
-n=8000 kind=final tau=0.1 secs=0.007168
-n=8000 kind=final tau=0.15 secs=0.004928
-n=8000 kind=final tau=0.2 secs=0.004908
-n=8000 kind=final tau=0.25 secs=0.004627
-n=8000 kind=final tau=0.3 secs=0.005462
-n=8000 kind=final tau=0.35 secs=0.005050
-n=8000 kind=final tau=0.4 secs=0.005096
-n=8000 kind=final tau=0.45 secs=0.004283
-n=8000 kind=final tau=0.5 secs=0.003518
-n=8000 kind=final tau=0.55 secs=0.004422
-n=8000 kind=final tau=0.6 secs=0.005115
-n=8000 kind=final tau=0.65 secs=0.005503
-n=8000 kind=final tau=0.7 secs=0.006483
-n=8000 kind=final tau=0.75 secs=0.005778
-n=8000 kind=final tau=0.8 secs=0.005722
-n=8000 kind=final tau=0.85 secs=0.005792
-n=8000 kind=final tau=0.9 secs=0.006321
-n=8000 kind=final tau=0.95 secs=0.007963
+# CPU(s):                                  4
+# Model name:                              AMD EPYC 9V74 80-Core Processor
+# Thread(s) per core:                      2
+# Core(s) per socket:                      2
+# Socket(s):                               1
+# L3 cache:                                32 MiB (1 instance)
+threads=1 task=selection_qr_n8000 secs=2.486 rho=-0.44 digest=ab9c6139ac246f7b
+threads=1 task=selection_qr_fast_n8000 secs=0.577 rho=-0.44 digest=c2223334c00c729a
+threads=1 task=bootstrap_16_n2000 secs=8.822 rho_se=0.07827 digest=85b8cb80346b0fab
+threads=1 task=conquer_bootstrap_400_n5000 secs=0.928 se=0.03064 digest=0c5f4b8d95308c1b
+threads=2 task=selection_qr_n8000 secs=1.289 rho=-0.44 digest=ab9c6139ac246f7b
+threads=2 task=selection_qr_fast_n8000 secs=0.578 rho=-0.44 digest=c2223334c00c729a
+threads=2 task=bootstrap_16_n2000 secs=4.428 rho_se=0.07827 digest=85b8cb80346b0fab
+threads=2 task=conquer_bootstrap_400_n5000 secs=0.486 se=0.03064 digest=0c5f4b8d95308c1b
+threads=3 task=selection_qr_n8000 secs=1.042 rho=-0.44 digest=ab9c6139ac246f7b
+threads=3 task=selection_qr_fast_n8000 secs=0.580 rho=-0.44 digest=c2223334c00c729a
+threads=3 task=bootstrap_16_n2000 secs=3.573 rho_se=0.07827 digest=85b8cb80346b0fab
+threads=3 task=conquer_bootstrap_400_n5000 secs=0.407 se=0.03064 digest=0c5f4b8d95308c1b
+threads=4 task=selection_qr_n8000 secs=0.888 rho=-0.44 digest=ab9c6139ac246f7b
+threads=4 task=selection_qr_fast_n8000 secs=0.578 rho=-0.44 digest=c2223334c00c729a
+threads=4 task=bootstrap_16_n2000 secs=3.016 rho_se=0.07827 digest=85b8cb80346b0fab
+threads=4 task=conquer_bootstrap_400_n5000 secs=0.344 se=0.03064 digest=0c5f4b8d95308c1b
+threads=6 task=selection_qr_n8000 secs=0.896 rho=-0.44 digest=ab9c6139ac246f7b
+threads=6 task=selection_qr_fast_n8000 secs=0.579 rho=-0.44 digest=c2223334c00c729a
+threads=6 task=bootstrap_16_n2000 secs=3.022 rho_se=0.07827 digest=85b8cb80346b0fab
+threads=6 task=conquer_bootstrap_400_n5000 secs=0.343 se=0.03064 digest=0c5f4b8d95308c1b
+threads=8 task=selection_qr_n8000 secs=0.899 rho=-0.44 digest=ab9c6139ac246f7b
+threads=8 task=selection_qr_fast_n8000 secs=0.578 rho=-0.44 digest=c2223334c00c729a
+threads=8 task=bootstrap_16_n2000 secs=3.034 rho_se=0.07827 digest=85b8cb80346b0fab
+threads=8 task=conquer_bootstrap_400_n5000 secs=0.349 se=0.03064 digest=0c5f4b8d95308c1b
+n=2000 kind=serial secs=0.001233
+n=2000 kind=grid rho=-0.98 secs=0.007314
+n=2000 kind=grid rho=-0.96 secs=0.006823
+n=2000 kind=grid rho=-0.94 secs=0.006992
+n=2000 kind=grid rho=-0.92 secs=0.005964
+n=2000 kind=grid rho=-0.9 secs=0.005635
+n=2000 kind=grid rho=-0.88 secs=0.005906
+n=2000 kind=grid rho=-0.86 secs=0.006090
+n=2000 kind=grid rho=-0.84 secs=0.005734
+n=2000 kind=grid rho=-0.82 secs=0.005740
+n=2000 kind=grid rho=-0.8 secs=0.005977
+n=2000 kind=grid rho=-0.78 secs=0.005378
+n=2000 kind=grid rho=-0.76 secs=0.005315
+n=2000 kind=grid rho=-0.74 secs=0.005368
+n=2000 kind=grid rho=-0.72 secs=0.005261
+n=2000 kind=grid rho=-0.7 secs=0.005025
+n=2000 kind=grid rho=-0.68 secs=0.004981
+n=2000 kind=grid rho=-0.66 secs=0.004953
+n=2000 kind=grid rho=-0.64 secs=0.004987
+n=2000 kind=grid rho=-0.62 secs=0.005091
+n=2000 kind=grid rho=-0.6 secs=0.005273
+n=2000 kind=grid rho=-0.58 secs=0.005271
+n=2000 kind=grid rho=-0.56 secs=0.005142
+n=2000 kind=grid rho=-0.54 secs=0.005100
+n=2000 kind=grid rho=-0.52 secs=0.005090
+n=2000 kind=grid rho=-0.5 secs=0.005087
+n=2000 kind=grid rho=-0.48 secs=0.005064
+n=2000 kind=grid rho=-0.46 secs=0.004991
+n=2000 kind=grid rho=-0.44 secs=0.005098
+n=2000 kind=grid rho=-0.42 secs=0.005001
+n=2000 kind=grid rho=-0.4 secs=0.005118
+n=2000 kind=grid rho=-0.38 secs=0.004903
+n=2000 kind=grid rho=-0.36 secs=0.005050
+n=2000 kind=grid rho=-0.34 secs=0.005015
+n=2000 kind=grid rho=-0.32 secs=0.005014
+n=2000 kind=grid rho=-0.3 secs=0.005147
+n=2000 kind=grid rho=-0.28 secs=0.004807
+n=2000 kind=grid rho=-0.26 secs=0.004665
+n=2000 kind=grid rho=-0.24 secs=0.004921
+n=2000 kind=grid rho=-0.22 secs=0.004700
+n=2000 kind=grid rho=-0.2 secs=0.004863
+n=2000 kind=grid rho=-0.18 secs=0.004807
+n=2000 kind=grid rho=-0.16 secs=0.004674
+n=2000 kind=grid rho=-0.14 secs=0.004640
+n=2000 kind=grid rho=-0.12 secs=0.004599
+n=2000 kind=grid rho=-0.1 secs=0.004447
+n=2000 kind=grid rho=-0.08 secs=0.004445
+n=2000 kind=grid rho=-0.06 secs=0.004207
+n=2000 kind=grid rho=-0.04 secs=0.004416
+n=2000 kind=grid rho=-0.02 secs=0.004462
+n=2000 kind=grid rho=0 secs=0.004455
+n=2000 kind=grid rho=0.02 secs=0.004456
+n=2000 kind=grid rho=0.04 secs=0.004377
+n=2000 kind=grid rho=0.06 secs=0.004332
+n=2000 kind=grid rho=0.08 secs=0.004237
+n=2000 kind=grid rho=0.1 secs=0.004416
+n=2000 kind=grid rho=0.12 secs=0.004163
+n=2000 kind=grid rho=0.14 secs=0.004496
+n=2000 kind=grid rho=0.16 secs=0.004258
+n=2000 kind=grid rho=0.18 secs=0.004458
+n=2000 kind=grid rho=0.2 secs=0.004304
+n=2000 kind=grid rho=0.22 secs=0.004299
+n=2000 kind=grid rho=0.24 secs=0.004349
+n=2000 kind=grid rho=0.26 secs=0.004390
+n=2000 kind=grid rho=0.28 secs=0.004539
+n=2000 kind=grid rho=0.3 secs=0.004384
+n=2000 kind=grid rho=0.32 secs=0.004398
+n=2000 kind=grid rho=0.34 secs=0.004513
+n=2000 kind=grid rho=0.36 secs=0.004267
+n=2000 kind=grid rho=0.38 secs=0.004358
+n=2000 kind=grid rho=0.4 secs=0.004370
+n=2000 kind=grid rho=0.42 secs=0.004322
+n=2000 kind=grid rho=0.44 secs=0.004398
+n=2000 kind=grid rho=0.46 secs=0.004611
+n=2000 kind=grid rho=0.48 secs=0.004626
+n=2000 kind=grid rho=0.5 secs=0.005428
+n=2000 kind=grid rho=0.52 secs=0.004599
+n=2000 kind=grid rho=0.54 secs=0.005041
+n=2000 kind=grid rho=0.56 secs=0.004822
+n=2000 kind=grid rho=0.58 secs=0.004836
+n=2000 kind=grid rho=0.6 secs=0.004791
+n=2000 kind=grid rho=0.62 secs=0.004833
+n=2000 kind=grid rho=0.64 secs=0.005016
+n=2000 kind=grid rho=0.66 secs=0.004737
+n=2000 kind=grid rho=0.68 secs=0.004857
+n=2000 kind=grid rho=0.7 secs=0.004720
+n=2000 kind=grid rho=0.72 secs=0.005013
+n=2000 kind=grid rho=0.74 secs=0.005331
+n=2000 kind=grid rho=0.76 secs=0.005480
+n=2000 kind=grid rho=0.78 secs=0.005468
+n=2000 kind=grid rho=0.8 secs=0.005824
+n=2000 kind=grid rho=0.82 secs=0.005847
+n=2000 kind=grid rho=0.84 secs=0.005486
+n=2000 kind=grid rho=0.86 secs=0.005775
+n=2000 kind=grid rho=0.88 secs=0.005731
+n=2000 kind=grid rho=0.9 secs=0.006402
+n=2000 kind=grid rho=0.92 secs=0.006030
+n=2000 kind=grid rho=0.94 secs=0.006855
+n=2000 kind=grid rho=0.96 secs=0.007041
+n=2000 kind=grid rho=0.98 secs=0.006847
+n=2000 kind=final tau=0.05 secs=0.001750
+n=2000 kind=final tau=0.1 secs=0.001388
+n=2000 kind=final tau=0.15 secs=0.001556
+n=2000 kind=final tau=0.2 secs=0.001154
+n=2000 kind=final tau=0.25 secs=0.001048
+n=2000 kind=final tau=0.3 secs=0.001049
+n=2000 kind=final tau=0.35 secs=0.001085
+n=2000 kind=final tau=0.4 secs=0.001094
+n=2000 kind=final tau=0.45 secs=0.001056
+n=2000 kind=final tau=0.5 secs=0.000985
+n=2000 kind=final tau=0.55 secs=0.001098
+n=2000 kind=final tau=0.6 secs=0.001013
+n=2000 kind=final tau=0.65 secs=0.001051
+n=2000 kind=final tau=0.7 secs=0.001213
+n=2000 kind=final tau=0.75 secs=0.001329
+n=2000 kind=final tau=0.8 secs=0.001080
+n=2000 kind=final tau=0.85 secs=0.001129
+n=2000 kind=final tau=0.9 secs=0.001513
+n=2000 kind=final tau=0.95 secs=0.001598
+n=8000 kind=serial secs=0.004574
+n=8000 kind=grid rho=-0.98 secs=0.036407
+n=8000 kind=grid rho=-0.96 secs=0.035553
+n=8000 kind=grid rho=-0.94 secs=0.035408
+n=8000 kind=grid rho=-0.92 secs=0.030283
+n=8000 kind=grid rho=-0.9 secs=0.031311
+n=8000 kind=grid rho=-0.88 secs=0.029100
+n=8000 kind=grid rho=-0.86 secs=0.028776
+n=8000 kind=grid rho=-0.84 secs=0.030276
+n=8000 kind=grid rho=-0.82 secs=0.030753
+n=8000 kind=grid rho=-0.8 secs=0.028114
+n=8000 kind=grid rho=-0.78 secs=0.027911
+n=8000 kind=grid rho=-0.76 secs=0.025020
+n=8000 kind=grid rho=-0.74 secs=0.024890
+n=8000 kind=grid rho=-0.72 secs=0.024765
+n=8000 kind=grid rho=-0.7 secs=0.024453
+n=8000 kind=grid rho=-0.68 secs=0.024861
+n=8000 kind=grid rho=-0.66 secs=0.024493
+n=8000 kind=grid rho=-0.64 secs=0.024940
+n=8000 kind=grid rho=-0.62 secs=0.023384
+n=8000 kind=grid rho=-0.6 secs=0.023757
+n=8000 kind=grid rho=-0.58 secs=0.023432
+n=8000 kind=grid rho=-0.56 secs=0.023900
+n=8000 kind=grid rho=-0.54 secs=0.022857
+n=8000 kind=grid rho=-0.52 secs=0.022533
+n=8000 kind=grid rho=-0.5 secs=0.023860
+n=8000 kind=grid rho=-0.48 secs=0.022989
+n=8000 kind=grid rho=-0.46 secs=0.023585
+n=8000 kind=grid rho=-0.44 secs=0.023150
+n=8000 kind=grid rho=-0.42 secs=0.022216
+n=8000 kind=grid rho=-0.4 secs=0.021818
+n=8000 kind=grid rho=-0.38 secs=0.022569
+n=8000 kind=grid rho=-0.36 secs=0.023166
+n=8000 kind=grid rho=-0.34 secs=0.022329
+n=8000 kind=grid rho=-0.32 secs=0.021752
+n=8000 kind=grid rho=-0.3 secs=0.022237
+n=8000 kind=grid rho=-0.28 secs=0.021372
+n=8000 kind=grid rho=-0.26 secs=0.021074
+n=8000 kind=grid rho=-0.24 secs=0.021738
+n=8000 kind=grid rho=-0.22 secs=0.021897
+n=8000 kind=grid rho=-0.2 secs=0.022537
+n=8000 kind=grid rho=-0.18 secs=0.022388
+n=8000 kind=grid rho=-0.16 secs=0.023774
+n=8000 kind=grid rho=-0.14 secs=0.022081
+n=8000 kind=grid rho=-0.12 secs=0.022706
+n=8000 kind=grid rho=-0.1 secs=0.021838
+n=8000 kind=grid rho=-0.08 secs=0.021409
+n=8000 kind=grid rho=-0.06 secs=0.023012
+n=8000 kind=grid rho=-0.04 secs=0.022752
+n=8000 kind=grid rho=-0.02 secs=0.022326
+n=8000 kind=grid rho=0 secs=0.022277
+n=8000 kind=grid rho=0.02 secs=0.022203
+n=8000 kind=grid rho=0.04 secs=0.021493
+n=8000 kind=grid rho=0.06 secs=0.022257
+n=8000 kind=grid rho=0.08 secs=0.023756
+n=8000 kind=grid rho=0.1 secs=0.022096
+n=8000 kind=grid rho=0.12 secs=0.022332
+n=8000 kind=grid rho=0.14 secs=0.023012
+n=8000 kind=grid rho=0.16 secs=0.022022
+n=8000 kind=grid rho=0.18 secs=0.022369
+n=8000 kind=grid rho=0.2 secs=0.023191
+n=8000 kind=grid rho=0.22 secs=0.021584
+n=8000 kind=grid rho=0.24 secs=0.021968
+n=8000 kind=grid rho=0.26 secs=0.022080
+n=8000 kind=grid rho=0.28 secs=0.022417
+n=8000 kind=grid rho=0.3 secs=0.022608
+n=8000 kind=grid rho=0.32 secs=0.022006
+n=8000 kind=grid rho=0.34 secs=0.022163
+n=8000 kind=grid rho=0.36 secs=0.022454
+n=8000 kind=grid rho=0.38 secs=0.023830
+n=8000 kind=grid rho=0.4 secs=0.023644
+n=8000 kind=grid rho=0.42 secs=0.022811
+n=8000 kind=grid rho=0.44 secs=0.022383
+n=8000 kind=grid rho=0.46 secs=0.023053
+n=8000 kind=grid rho=0.48 secs=0.022884
+n=8000 kind=grid rho=0.5 secs=0.023436
+n=8000 kind=grid rho=0.52 secs=0.023879
+n=8000 kind=grid rho=0.54 secs=0.024128
+n=8000 kind=grid rho=0.56 secs=0.023573
+n=8000 kind=grid rho=0.58 secs=0.024529
+n=8000 kind=grid rho=0.6 secs=0.025402
+n=8000 kind=grid rho=0.62 secs=0.024533
+n=8000 kind=grid rho=0.64 secs=0.025182
+n=8000 kind=grid rho=0.66 secs=0.024373
+n=8000 kind=grid rho=0.68 secs=0.025700
+n=8000 kind=grid rho=0.7 secs=0.025508
+n=8000 kind=grid rho=0.72 secs=0.025612
+n=8000 kind=grid rho=0.74 secs=0.026492
+n=8000 kind=grid rho=0.76 secs=0.027697
+n=8000 kind=grid rho=0.78 secs=0.027434
+n=8000 kind=grid rho=0.8 secs=0.026433
+n=8000 kind=grid rho=0.82 secs=0.029250
+n=8000 kind=grid rho=0.84 secs=0.028656
+n=8000 kind=grid rho=0.86 secs=0.028935
+n=8000 kind=grid rho=0.88 secs=0.030221
+n=8000 kind=grid rho=0.9 secs=0.029394
+n=8000 kind=grid rho=0.92 secs=0.030859
+n=8000 kind=grid rho=0.94 secs=0.035400
+n=8000 kind=grid rho=0.96 secs=0.035184
+n=8000 kind=grid rho=0.98 secs=0.035319
+n=8000 kind=final tau=0.05 secs=0.011540
+n=8000 kind=final tau=0.1 secs=0.007786
+n=8000 kind=final tau=0.15 secs=0.005420
+n=8000 kind=final tau=0.2 secs=0.005304
+n=8000 kind=final tau=0.25 secs=0.005001
+n=8000 kind=final tau=0.3 secs=0.005863
+n=8000 kind=final tau=0.35 secs=0.005480
+n=8000 kind=final tau=0.4 secs=0.005295
+n=8000 kind=final tau=0.45 secs=0.004677
+n=8000 kind=final tau=0.5 secs=0.003487
+n=8000 kind=final tau=0.55 secs=0.004641
+n=8000 kind=final tau=0.6 secs=0.005377
+n=8000 kind=final tau=0.65 secs=0.005714
+n=8000 kind=final tau=0.7 secs=0.006778
+n=8000 kind=final tau=0.75 secs=0.006239
+n=8000 kind=final tau=0.8 secs=0.006185
+n=8000 kind=final tau=0.85 secs=0.006251
+n=8000 kind=final tau=0.9 secs=0.006951
+n=8000 kind=final tau=0.95 secs=0.008699
