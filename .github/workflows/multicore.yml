@@ -1,0 +1,27 @@
+# Runs the thread-count check (checks/multicore.sh) on a GitHub-hosted runner, which has more cores than the machine
+# the code was written on, and commits the output to this branch. Only pushes to the multicore-check branch run it.
+name: multicore-check
+on:
+  push:
+    branches: [multicore-check]
+permissions:
+  contents: write
+jobs:
+  multicore:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Rust toolchain
+        run: rustup update stable && rustup default stable
+      - name: Build and test
+        run: cargo test --release && cargo build --release --examples
+      - name: Thread-count check and task timings
+        run: bash checks/multicore.sh > checks/multicore_github_runner.txt 2>&1; cat checks/multicore_github_runner.txt
+      - name: Commit the results to this branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add checks/multicore_github_runner.txt
+          git commit -m "Multicore check on a GitHub-hosted runner ($(nproc) cores)"
+          git push
