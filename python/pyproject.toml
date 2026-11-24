@@ -1,0 +1,16 @@
+[build-system]
+requires = ["maturin>=1.5,<2"]
+build-backend = "maturin"
+
+[project]
+name = "quantile-regression-rs"
+version = "0.1.0"
+description = "Python bindings for quantile_regression_rust: Koenker, Morillo and Eilers (rq, rqic), Koenker and Park (ipqr), and Arellano and Bonhomme (2017)"
+authors = [{ name = "Eliot R. Weinstein", email = "eliotw@uchicago.edu" }]
+license = { text = "BSD-3-Clause" }
+requires-python = ">=3.9"
+dependencies = ["numpy>=1.21"]
+
+[tool.maturin]
+module-name = "quantile_regression_rs"
+features = ["pyo3/extension-module"]
