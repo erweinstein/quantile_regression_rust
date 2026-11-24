@@ -144,9 +144,31 @@ and the probit coefficients.
   `selection_qr_fast` makes the count independent of the rounding.
 - **The coarse search** is exact only when the full-grid minimizer lies near one of the best coarse points, which
   it reports it cannot guarantee (as in the Python port).
-- **The benchmarks are small**: one machine, 2 cores, a few data sets. With more cores the parallel parts should
-  scale further; I have not measured that.
+- **The benchmarks are small**: a 2-core machine and a 4-vCPU GitHub runner (below), a few data sets. Beyond 4
+  threads the scaling is simulated, not measured.
 - **No Python bindings yet.** To call this from Python, a PyO3 wrapper would be the next step.
+
+## More threads and more cores
+
+`examples/multicore.rs` runs `selection_qr` (n = 8,000), `selection_qr_fast` with preprocessing, the weighted
+bootstrap (16 draws, n = 2,000) and the conquer bootstrap (400 draws), and prints a digest of every bit of each
+result. `checks/multicore.sh` runs it at 1, 2, 3, 4, 6 and 8 threads, and `.github/workflows/multicore.yml` runs
+that on a GitHub-hosted runner whenever the `multicore-check` branch is pushed
+(`checks/multicore_github_runner.txt`).
+
+- **The same bits everywhere.** The digests are identical at every thread count (1–16 tried), on three
+  processors (an Intel Xeon here; AMD EPYC 7763 and EPYC 9V74 on two runner jobs), and with two compilers
+  (rustc 1.97 and 1.100).
+- **Scaling, measured.** The runner's 4 vCPUs are 2 physical cores with 2 hyperthreads each. On it, 2 threads
+  give 1.9–2.0× (`selection_qr` 2.486 → 1.289 s; the bootstrap 8.82 → 4.43 s) and 4 threads 2.7–2.9×, that is,
+  the second hyperthread on each core adds about 40%. `selection_qr_fast` with preprocessing does not speed
+  up, because its warm-started sweep along the ρ grid is sequential by design.
+- **Scaling, simulated.** Timing each independent piece of `selection_qr` on one thread
+  (`multicore --tasks`) and scheduling the pieces on k workers as rayon does predicts the 2-thread time to
+  within 1% (1.224 s predicted, 1.216 s measured on the runner). On k physical cores it predicts about 3.9× on 4,
+  7.4× on 8, 13× on 16 and 35× on 64 for one estimate: there are only 99 grid points and 19 quantiles to share
+  out. A bootstrap of 200 draws scales further (8× on 8, 15× on 16, 50× on 64). The simulation ignores what cores
+  share (memory bandwidth, caches, clock speed), so these are upper bounds.
 
 ## Reproducing the checks
 
@@ -155,6 +177,7 @@ cargo test --release                                              # all checks a
 python reference/make_reference.py <path to quantile_regression>  # regenerate the reference outputs
 cargo build --release --examples
 OPENBLAS_NUM_THREADS=1 python checks/benchmark.py <path to quantile_regression>
+bash checks/multicore.sh                                          # digests at several thread counts
 ```
 
 ## References
