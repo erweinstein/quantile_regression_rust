@@ -86,3 +86,9 @@ The point estimates agree to rounding: `rq`, `rqic`, `probit`, `selection_qr` (�
 `rq_se` and `rotated_tau` within 1e-12 or better; `ipqr` within 2e-13 (linear) and to every printed digit
 (exponential model); `conquer` within 1e-11; `selection_qr_fast` with preprocessing and the coarse search gives
 the same ρ, with β within 1e-9.
+
+## License
+
+As for the crate: the Apache License, Version 2.0 or the MIT license, at your option, with the third-party
+notices in `NOTICE.md`. The copies of `LICENSE-APACHE`, `LICENSE-MIT` and `NOTICE.md` in this folder are there so
+that the wheel carries them; the ones in the folder above are the originals.

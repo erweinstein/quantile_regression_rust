@@ -7,7 +7,7 @@ name = "quantile-regression-rs"
 version = "0.1.0"
 description = "Python bindings for quantile_regression_rust: Koenker, Morillo and Eilers (rq, rqic), Koenker and Park (ipqr), and Arellano and Bonhomme (2017)"
 authors = [{ name = "Eliot R. Weinstein", email = "eliotw@uchicago.edu" }]
-license = { text = "BSD-3-Clause" }
+license = { text = "MIT OR Apache-2.0" }
 requires-python = ">=3.9"
 dependencies = ["numpy>=1.21"]
 

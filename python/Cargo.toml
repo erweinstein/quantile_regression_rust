@@ -2,7 +2,7 @@
 name = "quantile_regression_py"
 version = "0.1.0"
 edition = "2021"
-license = "BSD-3-Clause"
+license = "MIT OR Apache-2.0"
 authors = ["Eliot R. Weinstein <eliotw@uchicago.edu>"]
 description = "Python bindings (PyO3) for the quantile_regression crate"
 publish = false

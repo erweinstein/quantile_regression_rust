@@ -217,3 +217,12 @@ bash checks/multicore.sh                                          # digests at s
 - Powell, J. L. (1991). Estimation of monotonic regression models under quantile restrictions. In W. A. Barnett,
   J. Powell and G. Tauchen (eds), *Nonparametric and Semiparametric Methods in Econometrics and Statistics*,
   Cambridge University Press, 357–384.
+
+## License
+
+Licensed under either of the Apache License, Version 2.0 (`LICENSE-APACHE`) or the MIT license (`LICENSE-MIT`), at
+your option. Two routines translate BSD-licensed code (SciPy's bounded minimizer and Genz's bivariate normal
+routine); `NOTICE.md` gives their notices, and credits the authors of the methods and the MATLAB code.
+
+Unless you explicitly state otherwise, any contribution intentionally submitted for inclusion in the work by you,
+as defined in the Apache-2.0 license, shall be dual licensed as above, without any additional terms or conditions.

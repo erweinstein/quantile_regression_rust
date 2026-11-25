@@ -2,7 +2,7 @@
 name = "quantile_regression"
 version = "0.1.0"
 edition = "2021"
-license = "BSD-3-Clause"
+license = "MIT OR Apache-2.0"
 authors = ["Eliot R. Weinstein <eliotw@uchicago.edu>"]
 description = "A Rust translation of the interior point quantile regression code of Koenker, Morillo and Eilers (rq.m, rqic.m) and Koenker and Park (ipqr.m), and Rust replication code for Arellano and Bonhomme (2017)"
 repository = "https://github.com/erweinstein/quantile_regression_rust"
